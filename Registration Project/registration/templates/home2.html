@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <title>Our website</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0," />
+
+    <!-- Bootstrap CSS -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <!--Stylesheet-->
+    <style media="screen">
+      *,
+      *:before,
+      *:after {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      :root {
+        --primary-text-color: #183b56;
+        --secondary-text-color: #577592;
+        --accent-color: #2294ed;
+        --accent-color-dark: #1d69a3;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        color: var(--primary-text-color);
+      }
+
+      p {
+        font-family: "Roboto", sans-serif;
+        color: var(--secondary-text-color);
+        line-height: 1.4rem;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      .flex {
+        display: flex;
+        align-items: center;
+      }
+
+      .container {
+        max-width: 1180px;
+        margin-inline: auto;
+        overflow: hidden;
+      }
+
+      nav {
+        background-color: #f3faff;
+        box-shadow: 0 0 4px #bbd0e2;
+        position: fixed;
+        top: 0;
+        z-index: 99;
+        left: 0;
+        right: 0;
+      }
+
+      .main-nav {
+        justify-content: space-between;
+        padding-block: 8px;
+      }
+
+      .logo-and-icon {
+        display: flex;
+        align-items: center;
+      }
+
+      .back-icon {
+        margin-left: 20px;
+      }
+
+      .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        background-color: #1629638;
+        border-radius: 50%;
+        box-shadow: 0 0 4px #149bf0;
+        cursor: pointer;
+      }
+
+      .icon:hover {
+        color: #3a917c;
+        font-size: 24px;
+      }
+
+      .company-logo {
+        margin-right: 10px;
+      }
+
+      .company-logo img {
+        width: 90px;
+      }
+
+      .nav-links ul {
+        gap: 70px;
+      }
+
+      .hover-link {
+        cursor: pointer;
+      }
+
+      .hover-link:hover {
+        color: var(--secondary-text-color);
+      }
+
+      .hover-link:active {
+        color: red;
+      }
+
+      .nav-links ul li {
+        color: var(--accent-color);
+        display: flex;
+      }
+
+
+      .news-input {
+        width: 200px;
+        height: 100%;
+        padding-inline: 12px;
+        border-radius: 4px;
+        border: 2px solid #bbd0e2;
+        font-family: "Roboto", sans-serif;
+      }
+
+      
+
+      
+
+      main {
+        padding-block: 20px;
+        margin-top: 80px;
+      }
+
+      .cards-container {
+        justify-content: space-between;
+        flex-wrap: wrap;
+        row-gap: 20px;
+        align-items: start;
+      }
+
+      .card {
+        width: 360px;
+        min-height: 400px;
+        box-shadow: 0 0 4px #d4ecff;
+        border-radius: 4px;
+        cursor: pointer;
+        background-color: #fff;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .card:hover {
+        box-shadow: 1px 1px 8px #d4ecff;
+        background-color: #f9fdff;
+        transform: translateY(-2px);
+      }
+
+      .card-header img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+      }
+
+      .card-content {
+        padding: 12px;
+      }
+
+      .news-source {
+        margin-block: 12px;
+      }
+
+
+      #menu-icon {
+        font-size: 35px;
+        color: var(--text-color);
+        cursor: pointer;
+        z-index: 10001;
+        display: none;
+      }
+
+      .menu ion-icon {
+        font-size: 35px;
+        color: var(--main-color);
+        z-index: 1001;
+      }
+
+      
+      @media (max-width: 1280px) {
+        
+      }
+
+      @media (max-width: 1090px) {
+        #menu-icon {
+          display: inline;
+        }
+
+       
+
+        .news-input {
+          width: 90%;
+          margin-bottom: 15px;
+        }
+
+        
+
+        .company-logo img {
+          width: 60px;
+        }
+
+
+        
+      }
+    </style>
+  </head>
+  <body>
+    {% csrf_token %}
+    
+
+    <nav>
+      <div class="main-nav container flex">
+        <div class="logo-and-icon">
+          <a href="{% url 'home2'%}" class="company-logo">
+            <img src="{% static 'logo.png'%}"alt="company logo"onclick="goToPreviousPage()"/>
+          </a>
+          <a href="{% url 'home' %}">
+            <span class="icon">
+              <ion-icon name="arrow-back-circle-outline"></ion-icon>
+            </span>
+          </a>
+        </div>
+        <div class="gcse-search" style="width: 250px" ;></div>
+        </div>
+        
+
+      
+    </nav>
+
+    <main>
+      <div class="cards-container container flex" id="cards-container"></div>
+    </main>
+
+    <template id="template-news-card">
+      <div class="card">
+        <div class="card-header">
+          <img src="https://via.placeholder.com/400x200"alt="news-image"id="news-img"/>
+        </div>
+        <div class="card-content">
+          <h3 id="news-title">This is the Title</h3>
+          <h6 class="news-source" id="news-source">End Gadget 26/08/2023</h6>
+          <p class="news-desc" id="news-desc">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae
+            saepe quis voluptatum quisquam vitae doloremque facilis molestias
+            quae ratione cumque!
+          </p>
+        </div>
+      </div>
+    </template>
+
+
+    <script async src="https://cse.google.com/cse.js?cx=b2f5464f0ee8a4a87">
+    </script>
+
+    <script>
+      // Wait for the page to load
+      document.addEventListener("DOMContentLoaded", function () {
+        // Adjust the search bar width after a short delay (e.g., 500 milliseconds)
+        setTimeout(function () {
+          const searchInput = document.querySelector(".gsc-input");
+          if (searchInput) {
+            searchInput.style.width = "300px"; // Adjust the width as per your preference
+          }
+        }, 500);
+      });
+    </script>
+    
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+
+    
+
+    <script> 
+      const menuItemsUrl = "/api/menu";
+      const newsApiUrl = "/api/news/";
+  
+      window.addEventListener("load", () => {
+        fetchMenuItems();
+        fetchNews("India");
+      });
+  
+      async function fetchMenuItems() {
+        try {
+          const response = await fetch(menuItemsUrl);
+          const data = await response.json();
+          renderMenuItems(data.menuItems);
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      }
+  
+  
+      async function fetchNews(query) {
+        try {
+          const response = await fetch(`${newsApiUrl}?q=${query}`);
+          const data = await response.json();
+          bindData(data.articles);
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      }
+  
+      function bindData(articles) {
+        const cardsContainer = document.getElementById("cards-container");
+        const newsCardTemplate = document.getElementById("template-news-card");
+  
+        cardsContainer.innerHTML = "";
+  
+        articles.forEach((article) => {
+          if (!article.urlToImage) return;
+          const cardClone = newsCardTemplate.content.cloneNode(true);
+          fillDataInCard(cardClone, article);
+          cardsContainer.appendChild(cardClone);
+        });
+      }
+  
+      function fillDataInCard(cardClone, article) {
+        const newsImg = cardClone.querySelector("#news-img");
+        const newsTitle = cardClone.querySelector("#news-title");
+        const newsSource = cardClone.querySelector("#news-source");
+        const newsDesc = cardClone.querySelector("#news-desc");
+
+        newsImg.src = article.urlToImage;
+        newsTitle.innerHTML = article.title;
+        newsDesc.innerHTML = article.description;
+
+        const date = new Date(article.publishedAt).toLocaleString("en-US", {
+          timeZone: "Asia/Jakarta",
+        });
+
+        newsSource.innerHTML = `${article.source.name} · ${date}`;
+
+        cardClone.firstElementChild.addEventListener("click", () => {
+          window.open(article.url, "_blank");
+        });
+      }
+  
+      let curSelectedNav = null;
+      function onNavItemClick(id) {
+        fetchNews(id);
+        const navItem = document.getElementById(id);
+        curSelectedNav?.classList.remove("active");
+        curSelectedNav = navItem;
+        curSelectedNav.classList.add("active");
+      }
+  
+      const searchButton = document.getElementById("search-button");
+      const searchText = document.getElementById("search-text");
+  
+      searchButton.addEventListener("click", () => {
+        const query = searchText.value;
+        if (!query) return;
+        fetchNews(query);
+        curSelectedNav?.classList.remove("active");
+        curSelectedNav = null;
+      });
+  
+      function goToPreviousPage() {
+        window.history.back();
+      }
+    </script>
+  
+  </body>
+  </html>

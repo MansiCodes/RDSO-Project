@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <title>Our website</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0," />
+
+    <!-- Bootstrap CSS -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <!--Stylesheet-->
+    <style media="screen">
+      *,
+      *:before,
+      *:after {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+        text-decoration: none;
+        list-style: none;
+      }
+
+      :root {
+        --bg-color: #222327;
+        --text-color: #fff;
+        --main-color: #149bf0;
+        --main-color-hover: #3a917c;
+        --text-color-hover: #fff;
+      }
+
+      body {
+        --navbar-height: 59px;
+        background: var(--bg-color);
+        color: var(--text-color);
+        background-image: url("{% static 'background1.jpg' %}");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-attachment: fixed;
+        min-height: 100vh;
+      }
+
+      #navbar {
+        display: flex;
+        justify-content: space-between;
+        padding-block: 5px;
+        align-items: center;
+        position: relative;
+        top: 0px;
+      }
+
+      #navbar::before {
+        content: "";
+        background-color: transparent;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        width: 100%;
+        z-index: -1;
+        opacity: 0.7;
+      }
+
+      .navigation {
+        display: flex;
+        margin-right: auto;
+        cursor: pointer;
+        border-radius: 6px;
+        font-size: 30px;
+      }
+
+      .home-icon {
+        font-size: 30px;
+        color: var(--main-color);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+      }
+
+      .home-text {
+        font-size: 25px;
+        margin-left: 5px;
+        color: #fff;
+      }
+
+      .home-text:hover {
+        background-color: transparent;
+        color: var(--main-color);
+        border-radius: 6px;
+      }
+
+      .logo {
+        margin: 10px 0;
+      }
+
+      .logo img {
+        height: 59px;
+        margin: 3px 6px;
+      }
+
+      #navbar ul {
+        display: flex;
+        font-family: "Baloo Bhai", cursive;
+      }
+
+      #navbar ul li {
+        list-style: none;
+        font-size: 1.3rem;
+        margin-right: 10px;
+      }
+
+      #navbar ul li a {
+        color: white;
+        display: block;
+        padding: 3px 22px;
+        border-radius: 20px;
+        text-decoration: none;
+      }
+
+      #navbar ul li a:hover {
+        color: black;
+        background-color: #3a917c;
+        text-color: ;
+      }
+      navbar ul li a.active {
+        color: (--main-color);
+      }
+
+      .btnLogout-popup {
+        padding: 8px 16px;
+        font-size: 14px;
+        font-weight: bold;
+        background-color: var(--main-color);
+        color: var(--text-color);
+        border: none;
+        border-radius: 4px;
+        margin-right: 15px;
+        transition: background-color 0.3s ease;
+      }
+
+      .btnLogout-popup:hover {
+        background-color: var(--main-color-hover);
+        color: var(--text-color-hover);
+      }
+
+      .user {
+        display: flex;
+        align-items: center;
+        margin-right: 15px;
+      }
+
+      .user ion-icon {
+        color: var(--main-color);
+        font-size: 28px;
+        margin-right: 15px;
+      }
+
+      #menu-icon {
+        font-size: 35px;
+        color: var(--text-color);
+        cursor: pointer;
+        z-index: 10001;
+        display: none;
+      }
+
+      .spacer {
+        margin-left: 10px;
+      }
+
+      #home {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        padding-top: 10vh;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+
+      #home::before {
+        content: "";
+        background-color: transparent;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        width: 100%;
+        z-index: -1;
+        opacity: 0.7;
+      }
+
+      .h-primary {
+        font-weight: 600;
+        font-size: 4.5vw;
+        color: red;
+        text-decoration: underline;
+        margin-bottom: 190px;
+        position: relative;
+        z-index: 2;
+      }
+
+      #home > p:nth-of-type(1) {
+        font-weight: 500;
+        font-size: 32px;
+        margin-bottom: 190px;
+      }
+
+      #home > p:nth-of-type(2) {
+        font-weight: 300;
+        font-size: 25px;
+        margin-bottom: 190px;
+      }
+
+      @media (max-width: 768px) {
+        .navigation {
+          justify-content: center;
+          margin: 10px 0;
+        }
+
+        .logo {
+          margin: 10px auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div id="navbar">
+        <a href="#" class="logo">
+          <img src="{% static 'logo.png'%}" alt="company logo" />
+        </a>
+
+        <ul class="navigation">
+          <a href="{% url 'home2'%}" class="logo">
+            <span class="home-icon">
+              <ion-icon name="home-outline"></ion-icon>
+              <span class="home-text">Home</span>
+            </span>
+          </a>
+        </ul>
+
+        {% if user.is_authenticated %}
+        <div class="spacer"></div>
+        <button
+          class="btnLogout-popup"
+          onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+        >
+          Logout
+        </button>
+        {% endif %}
+      </div>
+      <form
+        id="logout-form"
+        action="{% url 'logout' %}"
+        method="POST"
+        style="display: none"
+      >
+        {% csrf_token %}
+      </form>
+    </header>
+
+    <section id="home">
+      <h1 class="h-primary">News Sphere</h1>
+      <p>Discover the World through News Sphere</p>
+      <p>
+        This is the news channel for "Your Gateway to Unbiased News and Global
+        Perspectives".
+      </p>
+    </section>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>
